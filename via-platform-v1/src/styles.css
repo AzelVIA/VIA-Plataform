@@ -1,0 +1,137 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-petrol: var(--petrol);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-graphite: var(--graphite);
+  --color-graphite-elevated: var(--graphite-elevated);
+  --color-score-critical: var(--score-critical);
+  --color-score-medium: var(--score-medium);
+  --color-score-good: var(--score-good);
+  --color-score-excellent: var(--score-excellent);
+  --color-tier-foundation: var(--tier-foundation);
+  --color-tier-advanced: var(--tier-advanced);
+  --color-tier-immersive: var(--tier-immersive);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* Dark premium — Bloomberg + Apple + Tesla */
+  --graphite: oklch(0.18 0.012 240);
+  --graphite-elevated: oklch(0.22 0.014 240);
+  --petrol: oklch(0.42 0.07 220);
+  --cyan-soft: oklch(0.78 0.12 200);
+
+  --background: oklch(0.14 0.01 240);
+  --foreground: oklch(0.96 0.005 90);
+  --card: oklch(0.18 0.012 240);
+  --card-foreground: oklch(0.96 0.005 90);
+  --popover: oklch(0.20 0.014 240);
+  --popover-foreground: oklch(0.96 0.005 90);
+  --primary: oklch(0.78 0.12 200);
+  --primary-foreground: oklch(0.14 0.01 240);
+  --secondary: oklch(0.26 0.018 240);
+  --secondary-foreground: oklch(0.96 0.005 90);
+  --muted: oklch(0.22 0.014 240);
+  --muted-foreground: oklch(0.65 0.02 240);
+  --accent: oklch(0.42 0.07 220);
+  --accent-foreground: oklch(0.96 0.005 90);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.28 0.015 240);
+  --input: oklch(0.26 0.018 240);
+  --ring: oklch(0.78 0.12 200);
+
+  --success: oklch(0.72 0.16 155);
+  --warning: oklch(0.80 0.16 85);
+  --danger: oklch(0.65 0.22 25);
+
+  --score-critical: oklch(0.65 0.22 25);
+  --score-medium: oklch(0.80 0.16 85);
+  --score-good: oklch(0.78 0.12 200);
+  --score-excellent: oklch(0.72 0.16 155);
+
+  --tier-foundation: oklch(0.78 0.12 200);
+  --tier-advanced: oklch(0.70 0.16 280);
+  --tier-immersive: oklch(0.75 0.18 320);
+
+  --chart-1: oklch(0.78 0.12 200);
+  --chart-2: oklch(0.72 0.16 155);
+  --chart-3: oklch(0.80 0.16 85);
+  --chart-4: oklch(0.70 0.16 280);
+  --chart-5: oklch(0.65 0.22 25);
+
+  --sidebar: oklch(0.16 0.012 240);
+  --sidebar-foreground: oklch(0.96 0.005 90);
+  --sidebar-primary: oklch(0.78 0.12 200);
+  --sidebar-primary-foreground: oklch(0.14 0.01 240);
+  --sidebar-accent: oklch(0.22 0.014 240);
+  --sidebar-accent-foreground: oklch(0.96 0.005 90);
+  --sidebar-border: oklch(0.28 0.015 240);
+  --sidebar-ring: oklch(0.78 0.12 200);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  .font-mono, .tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+}

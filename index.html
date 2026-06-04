@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VIA Platform — Central de Documentos</title>
+<style>
+  :root{--bg:#0b1014;--panel:#121820;--border:#1f2933;--fg:#e8eef5;--muted:#8a97a8;--cyan:#5ad1e6;--petrol:#0f5f7a;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Inter,sans-serif;background:var(--bg);color:var(--fg);line-height:1.55}
+  header{padding:32px 40px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,#0b1014,#0f1c25)}
+  h1{margin:0;font-size:28px;letter-spacing:-.02em}
+  .sub{color:var(--muted);margin-top:6px;font-size:14px}
+  .wrap{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 105px)}
+  aside{border-right:1px solid var(--border);padding:24px;background:var(--panel)}
+  aside h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 12px}
+  .doc{display:block;padding:14px;margin-bottom:10px;border:1px solid var(--border);border-radius:10px;color:var(--fg);text-decoration:none;cursor:pointer;transition:.15s}
+  .doc:hover{border-color:var(--cyan);background:#172029}
+  .doc.active{border-color:var(--cyan);background:#172029}
+  .doc .t{font-weight:600;font-size:14px}
+  .doc .d{font-size:12px;color:var(--muted);margin-top:4px}
+  main{padding:0;display:flex;flex-direction:column}
+  .tools{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center;background:#0e141a}
+  .btn{padding:8px 14px;border:1px solid var(--border);border-radius:8px;background:#172029;color:var(--fg);text-decoration:none;font-size:13px;cursor:pointer}
+  .btn:hover{border-color:var(--cyan)}
+  .btn.primary{background:var(--petrol);border-color:var(--petrol)}
+  iframe{flex:1;width:100%;border:0;background:#1e1e1e}
+  .empty{flex:1;display:flex;align-items:center;justify-content:center;color:var(--muted);padding:40px;text-align:center}
+  .empty code{background:#172029;padding:2px 6px;border-radius:4px;color:var(--cyan)}
+  footer{padding:12px 40px;border-top:1px solid var(--border);font-size:12px;color:var(--muted)}
+  @media(max-width:780px){.wrap{grid-template-columns:1fr}aside{border-right:0;border-bottom:1px solid var(--border)}}
+</style>
+</head>
+<body>
+<header>
+  <h1>VIA Platform — Central de Documentos</h1>
+  <div class="sub">Visual Intelligence Architect · Documentação, código-fonte e guia de mídia</div>
+</header>
+<div class="wrap">
+  <aside>
+    <h2>Documentos</h2>
+    <a class="doc active" data-src="via-guia-midia.pdf" data-type="pdf">
+      <div class="t">📘 Guia de Mídia</div>
+      <div class="d">Como alterar imagens, vídeos e em quais arquivos editar</div>
+    </a>
+    <a class="doc" data-src="via-platform-v1.zip" data-type="zip">
+      <div class="t">📦 Código-fonte completo</div>
+      <div class="d">via-platform-v1.zip — projeto VIA pronto para baixar</div>
+    </a>
+    <a class="doc" data-src="README.html" data-type="html">
+      <div class="t">📝 Leia-me / Instruções</div>
+      <div class="d">Como rodar o projeto localmente</div>
+    </a>
+    <h2 style="margin-top:24px">Links rápidos</h2>
+    <a class="btn" style="display:block;margin-bottom:8px;text-align:center" href="https://via-sight-flow.lovable.app" target="_blank">🌐 Ver demo online</a>
+  </aside>
+  <main>
+    <div class="tools">
+      <span id="title" style="flex:1;font-size:14px;font-weight:600">Guia de Mídia</span>
+      <a id="dl" class="btn primary" href="via-guia-midia.pdf" download>⬇ Baixar</a>
+      <a id="open" class="btn" href="via-guia-midia.pdf" target="_blank">↗ Abrir</a>
+    </div>
+    <iframe id="viewer" src="via-guia-midia.pdf"></iframe>
+    <div id="empty" class="empty" style="display:none">
+      <div>
+        <p>Este arquivo não pode ser previsualizado no navegador.</p>
+        <p>Use os botões <b>Baixar</b> ou <b>Abrir</b> acima.</p>
+      </div>
+    </div>
+  </main>
+</div>
+<footer>VIA Platform v1.0 · Pacote offline · Abra <code>index.html</code> em qualquer navegador moderno</footer>
+<script>
+  const docs=document.querySelectorAll('.doc');
+  const viewer=document.getElementById('viewer');
+  const empty=document.getElementById('empty');
+  const title=document.getElementById('title');
+  const dl=document.getElementById('dl');
+  const open=document.getElementById('open');
+  docs.forEach(d=>d.addEventListener('click',e=>{
+    e.preventDefault();
+    docs.forEach(x=>x.classList.remove('active'));
+    d.classList.add('active');
+    const src=d.dataset.src, type=d.dataset.type;
+    title.textContent=d.querySelector('.t').textContent;
+    dl.href=src; open.href=src;
+    if(type==='zip'){viewer.style.display='none';empty.style.display='flex';}
+    else{viewer.style.display='block';empty.style.display='none';viewer.src=src;}
+  }));
+</script>
+</body>
+</html>
